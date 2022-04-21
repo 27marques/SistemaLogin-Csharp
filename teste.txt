@@ -1,1 +1,4 @@
-Teste branch inline
+git checkout -B NOMEBRANCH -- Criar nova branch
+git add . -- Adicionar os arquivos
+git commit -m "TEXTO DO COMMIT" -- Criar o commit
+git push OU git push --set-upstream origin NOMEBRANCH -- Subir ou sincronizar a branch
