@@ -9,9 +9,11 @@ namespace EncryptMe
     {
         public static void Main(string[] args)
         {
+            
             /*Application.EnableVisualStyles();
             Application.Run(new Login());*/
             Console.WriteLine("Hellow");
+
         }
     }
 }
