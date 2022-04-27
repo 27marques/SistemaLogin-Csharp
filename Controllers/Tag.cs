@@ -8,15 +8,15 @@ namespace Controllers
     public class TagController 
     {
         public static Tag IncluirTag(
-            int Id,
             string Descricao
         )
         {
-            if (String.IsNullOrEmpty(Id)) {
+            if (String.IsNullOrEmpty(Descricao)) 
+            {
                 throw new Exception("ID é obrigatório");
             }
 
-            return new Tag(Id, Descricao);
+            return new Tag(Descricao);
         }
 
         public static Tag AlterarTag(
@@ -26,7 +26,7 @@ namespace Controllers
         {
             Tag tag = GetTag(Id);
 
-            if (!String.IsNullOrEmpty(Id)) {
+            if (!String.IsNullOrEmpty(Descricao)) {
                 tag.Id = Id;
             }
             tag.Descricao = Descricao;
@@ -43,7 +43,7 @@ namespace Controllers
             return tag;
         }
 
-        public static List<Tag> VisualizarTags()
+        public static IEnumerable<Tag> VisualizarTags()
         {
             return Models.Tag.GetTags();  
         }
@@ -52,7 +52,7 @@ namespace Controllers
             int Id
         )
         {
-            List<Tag> tagsModels = Models.Tag.GetTags();
+            IEnumerable<Tag> tagsModels = Models.Tag.GetTags();
             IEnumerable<Tag> tags = from Tag in tagsModels
                             where Tag.Id == Id
                             select Tag;
