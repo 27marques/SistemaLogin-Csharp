@@ -45,9 +45,9 @@ namespace Controllers
             Models.Categoria.RemoverCategoria(categoria);
             return categoria;
         }
-        public static List<Categoria> VisualizarCategoria()
+        public static IEnumerable<Categoria> VisualizarCategoria()
         {
-            return Models.Categoria.GetCategoria();
+            return Models.Categoria.GetCategorias();
         }
 
         public static Categoria GetCategoria(
