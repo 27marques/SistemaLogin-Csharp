@@ -70,7 +70,7 @@ namespace Controllers
             Usuario.RemoverUsuario(usuario);
             return usuario;
         }
-        public static List<Usuario> VisualizarUsuario()
+        public static IEnumerable<Usuario> VisualizarUsuario()
         {
             return Usuario.GetUsuarios();
         }
@@ -78,7 +78,7 @@ namespace Controllers
         public static Usuario GetUsuario(int Id)
         {
             Usuario usuario = (
-                from Dentista in Usuario.GetUsuarios()
+                from Usuario in Usuario.GetUsuarios()
                     where Usuario.Id == Id
                     select Usuario
             ).First();
