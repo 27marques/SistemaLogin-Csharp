@@ -13,7 +13,7 @@ namespace Controllers
         {
             if (String.IsNullOrEmpty(Descricao)) 
             {
-                throw new Exception("ID é obrigatório");
+                throw new Exception("Descrição é obrigatória");
             }
 
             return new Tag(Descricao);

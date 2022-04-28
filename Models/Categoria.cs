@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Repository;
@@ -67,6 +68,10 @@ namespace Models
             db.SaveChanges();
         }
 
+        internal static List<Categoria> GetCategoria()
+        {
+            throw new NotImplementedException();
+        }
 
         public static IEnumerable<Categoria> GetCategorias()
         {
