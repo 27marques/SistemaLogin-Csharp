@@ -35,7 +35,8 @@ namespace Views
 
         private void handleConfirm(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            (new MenuPrincipal()).Show();
+
         }
 
         private void handleCancel(object sender, EventArgs e)
