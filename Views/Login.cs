@@ -35,6 +35,7 @@ namespace Views
 
         private void handleConfirm(object sender, EventArgs e)
         {
+            //verificar se pode logar
             (new MenuPrincipal()).Show();
 
         }
