@@ -28,14 +28,12 @@ namespace Controllers
             {
                 throw new Exception("Email inválido");
             }
-
-            if (String.IsNullOrEmpty(Senha))
-            {
-                throw new Exception("A senha é obrigatória.");
-            }
-
             if (Senha.Length < 8) {
                 throw new Exception("A senha deve ter no mínimo 8 caracteres.");
+            }
+            else
+            {
+                Senha = BCrypt.Net.BCrypt.HashPassword(Senha);
             }
 
             return new Usuario(Nome, Email, Senha);
@@ -76,6 +74,10 @@ namespace Controllers
 
             if (Senha.Length < 8) {
                 throw new Exception("A senha deve ter no mínimo 8 caracteres.");
+            }
+            else
+            {
+                Senha = BCrypt.Net.BCrypt.HashPassword(Senha);
             }
             usuario.Senha = Senha;
 
