@@ -50,7 +50,7 @@ namespace Views
   
         private void CadastrarUsuario(object sender, EventArgs e)
         {
-            //(new CadastrarUsuario()).Show();
+            (new CadastrarUsuario()).Show();
 
         }
         private void EditarUsuario(object sender, EventArgs e)

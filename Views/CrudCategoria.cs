@@ -49,7 +49,7 @@ namespace Views
   
         private void CadastrarCategoria(object sender, EventArgs e)
         {
-            //(new CadastrarCategoria()).Show();
+            (new CadastrarCategoria()).Show();
 
         }
         private void EditarCategoria(object sender, EventArgs e)
