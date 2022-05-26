@@ -42,7 +42,7 @@ namespace Views
                     this.fieldUsuario.txtField.Text,
                     this.fieldSenha.txtField.Text
                 );
-                (new MenuPrincipal()).Show();
+                (new MenuPrincipal(this)).Show();
 
             } catch (Exception err) {
                 MessageBox.Show(err.Message);
@@ -52,7 +52,10 @@ namespace Views
        
         private void handleCancel(object sender, EventArgs e)
         {
-            this.Close();
+            if (MessageBox.Show(" Deseja mesmo sair? ", "Mensage do sistema ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
     
     }

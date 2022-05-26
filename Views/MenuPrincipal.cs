@@ -7,11 +7,13 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading;
 using Views.Lib;
+using Views;
 
 namespace Views
 {
     public class MenuPrincipal : BaseForm
     {
+        Form parent;
         ButtonForm btnCategorias;
         ButtonForm btnTags;
         ButtonForm btnSenhas;
@@ -19,8 +21,10 @@ namespace Views
         ButtonForm btnCancelar;
     
 
-        public MenuPrincipal() : base("Menu Principal",SizeScreen.Small)
+        public MenuPrincipal(Form parent) : base("Menu Principal",SizeScreen.Small)
         {
+            this.parent = parent;
+            this.parent.Hide();
             btnCategorias = new ButtonForm("Categoria", 30, 70, this.handleCategorias);
             btnTags = new ButtonForm("Tags", 30, 120, this.handleTags);
             btnSenhas = new ButtonForm("Senhas", 170, 70, this.handleSenhas);
@@ -37,32 +41,39 @@ namespace Views
 
         private void handleCategorias(object sender, EventArgs e)
         {
-            //(new CrudCategoria()).Show();
+            (new CrudCategoria()).Show();
+            this.Hide();
 
         }
 
         private void handleTags(object sender, EventArgs e)
         {
             //(new CrudTag()).Show();
+            this.Hide();
 
         }
 
         private void handleSenhas(object sender, EventArgs e)
         {
-            //(new CrudSenha()).Show();
+            (new CrudSenha()).Show();
+            this.Hide();
 
         }
 
         private void handleUsuario(object sender, EventArgs e)
         {
-            //(new CrudUsuario()).Show();
+            (new CrudUsuario()).Show();
+            this.Hide();
 
         }
 
         private void handleCancel(object sender, EventArgs e)
         {
+            this.parent.Show();
             this.Close();
+            
         }
+        
     }
 }
 
