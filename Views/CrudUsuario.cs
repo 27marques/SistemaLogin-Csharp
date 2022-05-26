@@ -7,27 +7,29 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading;
 using Views.Lib;
+using Models;
+using Controllers;
 
 namespace Views
 {
     public class CrudUsuario : BaseForm
     {
+        Form parent;
         ListView listView;
         ButtonForm btnCadastrar;
         ButtonForm btnEditar;
         ButtonForm btnExcluir;
         ButtonForm btnCancelar;
        
-        public CrudUsuario() : base("Lista de Usuários",SizeScreen.Small)
+        public CrudUsuario(Form parent) : base("Lista de Usuários",SizeScreen.Small)
         {
+            this.parent = parent;
+            this.parent.Hide();
             listView = new ListView();
 			listView.Location = new Point(10, 20);
 			listView.Size = new Size(280,180);
             listView.View = View.Details;
-            ListViewItem Usuario1 = new ListViewItem("XXXXX");
-			Usuario1.SubItems.Add("ZZZZZZ");
-            listView.Items.AddRange(new ListViewItem[]{Usuario1});
-			listView.Columns.Add("Nome", -2, HorizontalAlignment.Left);
+            listView.Columns.Add("Nome", -2, HorizontalAlignment.Left);
     		listView.Columns.Add("Email", -2, HorizontalAlignment.Left);
             listView.Columns.Add("Senha", -2, HorizontalAlignment.Left);
 			listView.FullRowSelect = true;
@@ -35,11 +37,12 @@ namespace Views
 			listView.AllowColumnReorder = true;
 			listView.Sorting = SortOrder.Ascending;
 			
-            btnCadastrar = new ButtonForm("Cadastrar", 10, 220, this.CadastrarUsuario);
-            btnEditar = new ButtonForm("Editar", 10, 260, this.EditarUsuario);
-            btnExcluir = new ButtonForm("Excluir", 120, 220, this.ExcluirUsuario);
+            btnCadastrar = new ButtonForm("Cadastrar", 10, 220, this.handleIncluir);
+            btnEditar = new ButtonForm("Editar", 10, 260, this.handleAlterar);
+            btnExcluir = new ButtonForm("Excluir", 120, 220, this.handleExcluir);
             btnCancelar = new ButtonForm("Cancelar", 120, 260, this.handleCancel);
 
+            this.LoadInfo();
             this.Controls.Add(listView);
             this.Controls.Add(btnCadastrar);
             this.Controls.Add(btnEditar);
@@ -47,25 +50,44 @@ namespace Views
             this.Controls.Add(btnCancelar);
 
         }
+
+        public void LoadInfo() {
+            IEnumerable<Usuario> usuarios = UsuarioController.GetUsuario();
+
+            this.listView.Items.Clear();
+            foreach (Usuario item in usuarios)
+            {
+                ListViewItem lvItem = new ListViewItem(item.Id.ToString());
+                lvItem.SubItems.Add(item.Nome);
+                lvItem.SubItems.Add(item.Email);
+                lvItem.SubItems.Add(item.Senha);
+
+                this.listView.Items.Add(lvItem);
+            }
+        }
   
-        private void CadastrarUsuario(object sender, EventArgs e)
+        private void handleIncluir(object sender, EventArgs e)
         {
-            (new CadastrarUsuario()).Show();
+            (new CadastrarUsuario(this)).Show();
+            this.Hide();
 
         }
-        private void EditarUsuario(object sender, EventArgs e)
+        private void handleAlterar(object sender, EventArgs e)
         {
-            //(new EditarUsuario()).Show();
+            //(new AlterarUsuario()).Show();
+            this.Hide();
 
         }
-        private void ExcluirUsuario(object sender, EventArgs e)
+        private void handleExcluir(object sender, EventArgs e)
         {
-            //(new ExcluirUsuario()).Show();
+            //(new RemoverUsuario()).Show();
+            this.Hide();
 
         }
         private void handleCancel(object sender, EventArgs e)
         {
-            this.Close();
+            this.parent.Show();
+            this.Close(); 
         }
     }
 }

@@ -7,19 +7,24 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading;
 using Views.Lib;
+using Controllers;
 
 namespace Views
 {
-    public class CadastrarUsuario : Pessoa
+    public class CadastrarUsuario : BaseForm
     {
+        CrudUsuario parent;
         FieldForm fieldNome;
         FieldForm fieldEmail;
         FieldForm fieldSenha;
         ButtonForm btnConfirmar;
         ButtonForm btnCancelar;
 
-        public CadastrarUsuario() 
+        public CadastrarUsuario(CrudUsuario parent) : base ("Cadastrar Usuário",SizeScreen.Small)
         {
+            this.parent = parent;
+            this.parent.Hide();
+
             fieldNome = new FieldForm("Nome",20,320,120,20);
             fieldEmail = new FieldForm("E-mail",20,380,120,20);
             fieldSenha = new FieldForm("Senha",20,440,100,20);
@@ -39,16 +44,28 @@ namespace Views
 
         private void handleConfirm(object sender, EventArgs e)
         {
-            string title = "Atenção"; 
-            string message = "Usuário Cadastrado";  
-            MessageBox.Show(message, title);
-            this.Close();
+            try {
+                UsuarioController.InserirUsuario(
+                    this.fieldNome.txtField.Text,
+                    this.fieldEmail.txtField.Text,
+                    this.fieldSenha.txtField.Text
+                );
+                this.parent.LoadInfo();
+                this.parent.Show();
+                this.Close();
+            } catch (Exception err) {
+                MessageBox.Show(err.Message);
+            }
 
         }
 
         private void handleCancel(object sender, EventArgs e)
         {
-            this.Close();
+            if (MessageBox.Show(" Deseja mesmo sair? ", "Mensage do sistema ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.parent.Show();
+                this.Close();
+            }
         }
     
     }
