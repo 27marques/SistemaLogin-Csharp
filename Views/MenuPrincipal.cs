@@ -41,28 +41,28 @@ namespace Views
 
         private void handleCategorias(object sender, EventArgs e)
         {
-            (new CrudCategoria()).Show();
+            (new CrudCategoria(this)).Show();
             this.Hide();
 
         }
 
         private void handleTags(object sender, EventArgs e)
         {
-            //(new CrudTag()).Show();
+            (new CrudTag(this)).Show();
             this.Hide();
 
         }
 
         private void handleSenhas(object sender, EventArgs e)
         {
-            (new CrudSenha()).Show();
+            (new CrudSenha(this)).Show();
             this.Hide();
 
         }
 
         private void handleUsuario(object sender, EventArgs e)
         {
-            (new CrudUsuario()).Show();
+            (new CrudUsuario(this)).Show();
             this.Hide();
 
         }
