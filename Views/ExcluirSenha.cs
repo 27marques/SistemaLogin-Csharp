@@ -11,13 +11,13 @@ using Controllers;
 
 namespace Views
 {
-    public class ExcluirUsuario : BaseForm
+    public class ExcluirSenha : BaseForm
     {
         CrudUsuario parent;
         ButtonForm btnConfirmar;
         ButtonForm btnCancelar;
 
-        public ExcluirUsuario(CrudUsuario parent) : base("Excluir",SizeScreen.Small)
+        public ExcluirSenha(CrudSenha parent) : base("Excluir",SizeScreen.Small)
         {
             this.parent = parent;
             this.parent.Hide();
@@ -32,7 +32,7 @@ namespace Views
         private void handleConfirm(object sender, EventArgs e)
         {
             try {
-                UsuarioController.ExcluirUsuario();
+                SenhaController.ExcluirSenha();
                 this.parent.LoadInfo();
                 this.parent.Show();
                 this.Close();
