@@ -7,17 +7,22 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading;
 using Views.Lib;
+using Controllers;
 
 namespace Views
 {
-    public class CadastrarTag : Pessoa
+    public class CadastrarTag : BaseForm
     {
+        CrudTag parent;
         FieldForm fieldDescricao;
         ButtonForm btnConfirmar;
         ButtonForm btnCancelar;
 
-        public CadastrarTag() 
+        public CadastrarTag(CrudTag parent) : base("Cadastrar Tag", SizeScreen.Small) 
         {
+            this.parent = parent;
+            this.parent.Hide();
+
             fieldDescricao = new FieldForm("DEscrição",20,320,120,20);
                         
 			btnConfirmar = new ButtonForm("Confirmar", 200, 520, this.handleConfirm);
@@ -31,17 +36,27 @@ namespace Views
 
         private void handleConfirm(object sender, EventArgs e)
         {
-            string title = "Atenção"; 
-            string message = "TAG Cadastrado";  
-            MessageBox.Show(message, title);
-            this.Close();
+            try {
+                TagController.IncluirTag(
+                    this.fieldDescricao.txtField.Text
+                );
+                this.parent.LoadInfo();
+                this.parent.Show();
+                this.Close();
+            } catch (Exception err) {
+                MessageBox.Show(err.Message);
+            }
 
         }
 
         
         private void handleCancel(object sender, EventArgs e)
         {
-            this.Close();
+           if (MessageBox.Show(" Deseja mesmo sair? ", "Mensage do sistema ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.parent.Show();
+                this.Close();
+            }
         }
     
     }
