@@ -11,25 +11,20 @@ using Controllers;
 
 namespace Views
 {
-    public class AlterarTag : BaseForm
+    public class ExcluirTag : BaseForm
     {
-        CrudTag parent;
-        FieldForm fieldDescricao;
+        CrudCategoria parent;
         ButtonForm btnConfirmar;
         ButtonForm btnCancelar;
 
-        public AlterarTag(CrudTag parent) : base("Alterar Tag", SizeScreen.Small) 
+        public ExcluirTag(CrudCategoria parent) : base("Excluir",SizeScreen.Small)
         {
             this.parent = parent;
             this.parent.Hide();
 
-            fieldDescricao = new FieldForm("Descrição",20,320,120,20);
-                        
-			btnConfirmar = new ButtonForm("Confirmar", 200, 520, this.handleConfirm);
-            btnCancelar = new ButtonForm("Cancelar", 300, 520, this.handleCancel);
+            btnConfirmar = new ButtonForm("Confirmar", 180, 220, this.handleConfirm);
+            btnCancelar = new ButtonForm("Cancelar", 180, 260, this.handleCancel);
 
-            this.Controls.Add(fieldDescricao.lblField);
-            this.Controls.Add(fieldDescricao.txtField);
             this.Controls.Add(btnConfirmar);
             this.Controls.Add(btnCancelar);
         }
@@ -37,9 +32,7 @@ namespace Views
         private void handleConfirm(object sender, EventArgs e)
         {
             try {
-                TagController.AlterarTag(
-                    this.fieldDescricao.txtField.Text
-                );
+                CategoriaController.ExcluirTag();
                 this.parent.LoadInfo();
                 this.parent.Show();
                 this.Close();
@@ -49,16 +42,13 @@ namespace Views
 
         }
 
-        
         private void handleCancel(object sender, EventArgs e)
         {
-           if (MessageBox.Show(" Deseja mesmo sair? ", "Mensage do sistema ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show(" Deseja mesmo sair? ", "Mensage do sistema ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 this.parent.Show();
                 this.Close();
             }
         }
-    
     }
-
 }
