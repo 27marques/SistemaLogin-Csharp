@@ -66,19 +66,19 @@ namespace Views
 
         private void handleIncluir(object sender, EventArgs e)
         {
-            (new CadastrarCategoria()).Show();
+            (new IncluirCategoria()).Show();
             this.Hide();
 
         }
         private void handleAlterar(object sender, EventArgs e)
         {
-            //(new EditarCategoria()).Show();
+            (new AlterarCategoria()).Show();
             this.Hide();
 
         }
         private void handleExcluir(object sender, EventArgs e)
         {
-            //(new ExcluirCategoria()).Show();
+            (new ExcluirCategoria()).Show();
             this.Hide();
 
         }
