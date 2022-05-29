@@ -7,18 +7,23 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading;
 using Views.Lib;
+using Controllers;
 
 namespace Views
 {
     public class CadastrarCategoria : BaseForm
     {
+        CrudCategoria parent;
         FieldForm fieldNome;
         FieldForm fieldDescricao;
 		ButtonForm btnConfirmar;
         ButtonForm btnCancelar;
 
-        public CadastrarCategoria() : base("Categoria",SizeScreen.Small)
+        public CadastrarCategoria(CrudCategoria parent) : base("Cadastrar Categoria",SizeScreen.Small)
         {
+            this.parent = parent;
+            this.parent.Hide();
+
             fieldNome = new FieldForm("Nome",20,20,180,20);
             fieldDescricao = new FieldForm("Descrição",20,100,180,60);
 
@@ -35,18 +40,27 @@ namespace Views
 
         private void handleConfirm(object sender, EventArgs e)
         {
-            string title = "Atenção"; 
-            string message = "Categoria Cadastrada";  
-            MessageBox.Show(message, title);
-            this.Close();
+            try {
+                CategoriaController.IncluirCategoria(
+                    this.fieldNome.txtField.Text,
+                    this.fieldDescricao.txtField.Text
+                );
+                this.parent.LoadInfo();
+                this.parent.Show();
+                this.Close();
+            } catch (Exception err) {
+                MessageBox.Show(err.Message);
+            }
 
         }
 
         private void handleCancel(object sender, EventArgs e)
         {
-            this.Close();
+            if (MessageBox.Show(" Deseja mesmo sair? ", "Mensage do sistema ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.parent.Show();
+                this.Close();
+            }
         }
-    
     }
-
 }
