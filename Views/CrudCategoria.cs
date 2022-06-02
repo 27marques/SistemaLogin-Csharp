@@ -8,14 +8,14 @@ using System.Diagnostics;
 using System.Threading;
 using Views.Lib;
 using Models;
-using Controllers
+using Controllers;
 
 namespace Views
 {
     public class CrudCategoria : BaseForm
     {
         Form parent;
-        ListView listView;
+        public ListView listView;
         ButtonForm btnCadastrar;
         ButtonForm btnEditar;
         ButtonForm btnExcluir;
@@ -51,7 +51,7 @@ namespace Views
         }
   
         public void LoadInfo() {
-            IEnumerable<Categoria> categorias = CategoriaController.GetCategoria();
+            IEnumerable<Categoria> categorias = CategoriaController.VisualizarCategoria();
 
             this.listView.Items.Clear();
             foreach (Categoria item in categorias)
@@ -66,20 +66,40 @@ namespace Views
 
         private void handleIncluir(object sender, EventArgs e)
         {
-            (new IncluirCategoria()).Show();
+            (new CadastrarCategoria(this)).Show();
             this.Hide();
 
         }
         private void handleAlterar(object sender, EventArgs e)
         {
-            (new AlterarCategoria()).Show();
-            this.Hide();
+            if (this.listView.SelectedItems.Count > 0) {
+                (new AlterarCategoria(this)).Show();
+                this.Hide();
+            } else {
+                MessageBox.Show("Selecione ao menos um item", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
 
         }
         private void handleExcluir(object sender, EventArgs e)
         {
-            (new ExcluirCategoria()).Show();
-            this.Hide();
+            if (this.listView.SelectedItems.Count > 0) {
+                int id = Convert.ToInt32(this.listView.SelectedItems[0].Text);
+                //(new ExcluirCategoria(this)).Show();
+                //this.Hide();
+                DialogResult result = MessageBox.Show(
+                    $"Deseja excluir o item {id}?",
+                    "Confirmar",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (result == DialogResult.Yes) {
+                    CategoriaController.ExcluirCategoria(id);
+                    this.LoadInfo();
+                }
+            } else {
+                MessageBox.Show("Selecione ao menos um item", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
 
         }
         private void handleCancel(object sender, EventArgs e)
