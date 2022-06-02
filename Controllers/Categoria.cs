@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Models;
 
 namespace Controllers
@@ -54,7 +55,7 @@ namespace Controllers
             int Id
         )
         {
-            List<Categoria> categoriaModels = Models.Categoria.GetCategoria();
+            IEnumerable<Categoria> categoriaModels = Models.Categoria.GetCategorias();
             IEnumerable<Categoria> categorias = from Categoria in categoriaModels
                                         where Categoria.Id == Id
                                         select Categoria;
