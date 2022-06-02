@@ -50,7 +50,7 @@ namespace Views
         }
 
         public void LoadInfo() {
-            IEnumerable<Tag> tags = TagController.GetTag();
+            IEnumerable<Tag> tags = TagController.VisualizarTags();
 
             this.listView.Items.Clear();
             foreach (Tag item in tags)
@@ -70,14 +70,32 @@ namespace Views
         }
         private void handleAlterar(object sender, EventArgs e)
         {
-            //(new AlterarTag()).Show();
-            this.Hide();
+            if (this.listView.SelectedItems.Count > 0) {
+                (new AlterarTag(this)).Show();
+                this.Hide();
+            } else {
+                MessageBox.Show("Selecione ao menos um item", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
 
         }
         private void handleExcluir(object sender, EventArgs e)
         {
-            //(new RemoverTag()).Show();
-            this.Hide();
+            if (this.listView.SelectedItems.Count > 0) {
+                int id = Convert.ToInt32(this.listView.SelectedItems[0].Text);
+                DialogResult result = MessageBox.Show(
+                    $"Deseja excluir o item {id}?",
+                    "Confirmar",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (result == DialogResult.Yes) {
+                    TagController.ExcluirTag(id);
+                    this.LoadInfo();
+                }
+            } else {
+                MessageBox.Show("Selecione ao menos um item", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
 
         }
         private void handleCancel(object sender, EventArgs e)
