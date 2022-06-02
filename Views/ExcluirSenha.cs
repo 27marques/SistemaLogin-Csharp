@@ -13,7 +13,7 @@ namespace Views
 {
     public class ExcluirSenha : BaseForm
     {
-        CrudUsuario parent;
+        CrudSenha parent;
         ButtonForm btnConfirmar;
         ButtonForm btnCancelar;
 
@@ -32,7 +32,7 @@ namespace Views
         private void handleConfirm(object sender, EventArgs e)
         {
             try {
-                SenhaController.ExcluirSenha();
+                SenhaController.RemoverSenha(0);
                 this.parent.LoadInfo();
                 this.parent.Show();
                 this.Close();
