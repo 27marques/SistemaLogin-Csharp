@@ -38,6 +38,7 @@ namespace Views
         {
             try {
                 TagController.AlterarTag(
+                    0,
                     this.fieldDescricao.txtField.Text
                 );
                 this.parent.LoadInfo();
