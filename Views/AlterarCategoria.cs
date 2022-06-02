@@ -42,6 +42,7 @@ namespace Views
         {
             try {
                 CategoriaController.AlterarCategoria(
+                    Convert.ToInt32(this.parent.listView.SelectedItems[0].Text),
                     this.fieldNome.txtField.Text,
                     this.fieldDescricao.txtField.Text
                 );
