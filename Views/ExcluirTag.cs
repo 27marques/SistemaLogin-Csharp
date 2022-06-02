@@ -13,11 +13,11 @@ namespace Views
 {
     public class ExcluirTag : BaseForm
     {
-        CrudCategoria parent;
+        CrudTag parent;
         ButtonForm btnConfirmar;
         ButtonForm btnCancelar;
 
-        public ExcluirTag(CrudCategoria parent) : base("Excluir",SizeScreen.Small)
+        public ExcluirTag(CrudTag parent) : base("Excluir",SizeScreen.Small)
         {
             this.parent = parent;
             this.parent.Hide();
@@ -32,7 +32,7 @@ namespace Views
         private void handleConfirm(object sender, EventArgs e)
         {
             try {
-                CategoriaController.ExcluirTag();
+                TagController.ExcluirTag(0);
                 this.parent.LoadInfo();
                 this.parent.Show();
                 this.Close();
