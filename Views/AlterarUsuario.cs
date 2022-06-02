@@ -46,6 +46,7 @@ namespace Views
         {
             try {
                 UsuarioController.AlterarUsuario(
+                    0,
                     this.fieldNome.txtField.Text,
                     this.fieldEmail.txtField.Text,
                     this.fieldSenha.txtField.Text
