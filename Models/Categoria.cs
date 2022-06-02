@@ -68,11 +68,6 @@ namespace Models
             db.SaveChanges();
         }
 
-        internal static List<Categoria> GetCategoria()
-        {
-            throw new NotImplementedException();
-        }
-
         public static IEnumerable<Categoria> GetCategorias()
         {
             Context db = new Context();
