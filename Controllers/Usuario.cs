@@ -86,11 +86,6 @@ namespace Controllers
             return usuario;
         }
 
-        internal static IEnumerable<Usuario> GetUsuario()
-        {
-            throw new NotImplementedException();
-        }
-
         public static Usuario RemoverUsuario(
             int Id
         )
