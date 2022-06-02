@@ -52,15 +52,15 @@ namespace Views
         }
   
         public void LoadInfo() {
-            IEnumerable<Senha> senhas = SenhaController.GetSenha();
+            IEnumerable<Senha> senhas = SenhaController.VisualizarSenha();
 
             this.listView.Items.Clear();
             foreach (Senha item in senhas)
             {
                 ListViewItem lvItem = new ListViewItem(item.Id.ToString());
                 lvItem.SubItems.Add(item.Nome);
-                lvItem.SubItems.Add(item.Categoria);
-                lvItem.SubItems.Add(item.URL);
+                lvItem.SubItems.Add(item.CategoriaId.ToString());
+                lvItem.SubItems.Add(item.Url);
 
                 this.listView.Items.Add(lvItem);
             }
@@ -68,20 +68,38 @@ namespace Views
 
         private void handleIncluir(object sender, EventArgs e)
         {
-            //(new CadastrarSenha()).Show();
+            //(new InserirSenha(this)).Show();
             this.Hide();
 
         }
         private void handleAlterar(object sender, EventArgs e)
         {
-            //(new EditarSenha()).Show();
-            this.Hide();
+            if (this.listView.SelectedItems.Count > 0) {
+                //(new AlterarSenha(this)).Show();
+                this.Hide();
+            } else {
+                MessageBox.Show("Selecione ao menos um item", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
 
         }
         private void handleExcluir(object sender, EventArgs e)
         {
-            //(new ExcluirSenha()).Show();
-            this.Hide();
+            if (this.listView.SelectedItems.Count > 0) {
+                int id = Convert.ToInt32(this.listView.SelectedItems[0].Text);
+                DialogResult result = MessageBox.Show(
+                    $"Deseja excluir o item {id}?",
+                    "Confirmar",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (result == DialogResult.Yes) {
+                    SenhaController.RemoverSenha(id);
+                    this.LoadInfo();
+                }
+            } else {
+                MessageBox.Show("Selecione ao menos um item", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
 
         }
         private void handleCancel(object sender, EventArgs e)
