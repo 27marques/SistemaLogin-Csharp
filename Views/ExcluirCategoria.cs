@@ -32,7 +32,7 @@ namespace Views
         private void handleConfirm(object sender, EventArgs e)
         {
             try {
-                CategoriaController.ExcluirCategoria();
+                CategoriaController.ExcluirCategoria(0);
                 this.parent.LoadInfo();
                 this.parent.Show();
                 this.Close();
