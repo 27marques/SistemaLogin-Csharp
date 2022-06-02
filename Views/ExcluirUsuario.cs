@@ -32,7 +32,7 @@ namespace Views
         private void handleConfirm(object sender, EventArgs e)
         {
             try {
-                UsuarioController.ExcluirUsuario();
+                UsuarioController.RemoverUsuario(0);
                 this.parent.LoadInfo();
                 this.parent.Show();
                 this.Close();
