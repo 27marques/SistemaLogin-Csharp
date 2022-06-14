@@ -34,6 +34,7 @@ namespace Controllers
                 categoria.Nome = Nome;
             }
             categoria.Descricao = Descricao;
+            Models.Categoria.AlterarCategoria(Id, Nome, Descricao);
 
             return categoria;
         }
