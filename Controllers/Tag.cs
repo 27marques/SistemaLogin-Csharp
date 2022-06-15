@@ -26,10 +26,12 @@ namespace Controllers
         {
             Tag tag = GetTag(Id);
 
-            if (!String.IsNullOrEmpty(Descricao)) {
-                tag.Id = Id;
+            if (!String.IsNullOrEmpty(Descricao)) 
+            {
+                tag.Descricao = Descricao;
             }
-            tag.Descricao = Descricao;
+            tag.Id = Id;
+            Models.Tag.AlterarTag(Id, Descricao);
 
             return tag;
         }
