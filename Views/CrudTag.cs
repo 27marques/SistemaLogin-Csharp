@@ -15,7 +15,7 @@ namespace Views
     public class CrudTag : BaseForm
     {
         Form parent;
-        ListView listView;
+        public ListView listView;
         ButtonForm btnCadastrar;
         ButtonForm btnEditar;
         ButtonForm btnExcluir;
@@ -29,6 +29,7 @@ namespace Views
             listView.Location = new Point(10, 20);
             listView.Size = new Size(280,180);
             listView.View = View.Details;
+            listView.Columns.Add("ID", -2, HorizontalAlignment.Left);
             listView.Columns.Add("Descrição", -2, HorizontalAlignment.Left);
     		listView.FullRowSelect = true;
 			listView.GridLines = true;
