@@ -23,10 +23,10 @@ namespace Views
             this.parent = parent;
             this.parent.Hide();
 
-            fieldDescricao = new FieldForm("Descrição",20,320,120,20);
+            fieldDescricao = new FieldForm("Descrição",20,100,180,60);
                         
-			btnConfirmar = new ButtonForm("Confirmar", 200, 520, this.handleConfirm);
-            btnCancelar = new ButtonForm("Cancelar", 300, 520, this.handleCancel);
+			btnConfirmar = new ButtonForm("Confirmar", 180, 220, this.handleConfirm);
+            btnCancelar = new ButtonForm("Cancelar", 180, 260, this.handleCancel);
 
             this.Controls.Add(fieldDescricao.lblField);
             this.Controls.Add(fieldDescricao.txtField);
@@ -38,7 +38,7 @@ namespace Views
         {
             try {
                 TagController.AlterarTag(
-                    0,
+                    Convert.ToInt32(this.parent.listView.SelectedItems[0].Text),
                     this.fieldDescricao.txtField.Text
                 );
                 this.parent.LoadInfo();
