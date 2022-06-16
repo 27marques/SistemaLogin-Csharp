@@ -25,12 +25,12 @@ namespace Views
             this.parent = parent;
             this.parent.Hide();
 
-            fieldNome = new FieldForm("Nome",20,320,120,20);
-            fieldEmail = new FieldForm("E-mail",20,380,120,20);
-            fieldSenha = new FieldForm("Senha",20,440,100,20);
+            fieldNome = new FieldForm("Nome",20,20,180,20);
+            fieldEmail = new FieldForm("E-mail",20,100,180,60);
+            fieldSenha = new FieldForm("Senha",20,180,180,100);
            		
-            btnConfirmar = new ButtonForm("Confirmar", 200, 520, this.handleConfirm);
-            btnCancelar = new ButtonForm("Cancelar", 300, 520, this.handleCancel);
+            btnConfirmar = new ButtonForm("Confirmar", 60, 260, this.handleConfirm);
+            btnCancelar = new ButtonForm("Cancelar", 180, 260, this.handleCancel);
 
             this.Controls.Add(fieldNome.lblField);
             this.Controls.Add(fieldNome.txtField);
@@ -46,7 +46,7 @@ namespace Views
         {
             try {
                 UsuarioController.AlterarUsuario(
-                    0,
+                    Convert.ToInt32(this.parent.listView.SelectedItems[0].Text),
                     this.fieldNome.txtField.Text,
                     this.fieldEmail.txtField.Text,
                     this.fieldSenha.txtField.Text
