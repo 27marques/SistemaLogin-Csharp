@@ -15,7 +15,7 @@ namespace Views
     public class CrudUsuario : BaseForm
     {
         Form parent;
-        ListView listView;
+        public ListView listView;
         ButtonForm btnCadastrar;
         ButtonForm btnEditar;
         ButtonForm btnExcluir;
