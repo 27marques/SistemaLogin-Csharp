@@ -49,9 +49,9 @@ namespace Controllers
             {
                 throw new Exception("A senha é obrigatória.");
             }
-            if (String.IsNullOrEmpty(Procedimento))
+            if (SenhaEncrypt.Length < 8) 
             {
-                throw new Exception("O procedimento é obrigatória.");
+                throw new Exception("A senha deve ter no mínimo 8 caracteres.");
             }
 
             return new Senha(Nome, CategoriaId, Url, Usuario, SenhaEncrypt, Procedimento);
@@ -82,33 +82,33 @@ namespace Controllers
             }
             senha.Nome = Nome;
 
-            Regex rx = new Regex(
-                "https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+"
-                + "[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+"
-                + "[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))"
-                + "[a-zA-Z0-9]+\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]+\\.[^\\s]{2,}"
-            );
-
- 		    if (String.IsNullOrEmpty(Url) || !rx.IsMatch(Url))
+            if (CategoriaId > 0)
             {
-                throw new Exception("A url é inválida.");
+                senha.CategoriaId = CategoriaId;
             }
-            
-            if (String.IsNullOrEmpty(Usuario))
+            senha.CategoriaId = CategoriaId;
+
+            if (!String.IsNullOrEmpty(Url))
+            {
+                senha.Url = Url;
+            }
+            senha.Url = Url;
+
+            if (!String.IsNullOrEmpty(Usuario))
             {
                 senha.Usuario = Usuario;
             }
             senha.Usuario = Usuario;
 
-            if (String.IsNullOrEmpty(Procedimento))
+            if (!String.IsNullOrEmpty(SenhaEncrypt))
             {
-                senha.Procedimento = Procedimento;
+                senha.SenhaEncrypt = SenhaEncrypt;
             }
+            senha.SenhaEncrypt = SenhaEncrypt;
             senha.Procedimento = Procedimento;
 
-            Models.Senha.AlterarSenha(Id, Nome, CategoriaId, Url, Usuario, SenhaEncrypt, Procedimento);
-
             return senha;
+               
         }
 
         public static Senha RemoverSenha(
