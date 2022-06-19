@@ -68,7 +68,7 @@ namespace Views
 
         private void handleIncluir(object sender, EventArgs e)
         {
-            //(new InserirSenha(this)).Show();
+            (new CadastrarSenha1(this)).Show();
             this.Hide();
 
         }
