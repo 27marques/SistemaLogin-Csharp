@@ -29,7 +29,7 @@ namespace Views
             btnTags = new ButtonForm("Tags", 30, 120, this.handleTags);
             btnSenhas = new ButtonForm("Senhas", 170, 70, this.handleSenhas);
             btnUsuario = new ButtonForm("Usuário", 170, 120, this.handleUsuario);
-            btnCancelar = new ButtonForm("Sair", 100, 230, this.handleCancel);
+            btnCancelar = new ButtonForm("Voltar", 100, 230, this.handleCancel);
 
             this.Controls.Add(btnCategorias);
             this.Controls.Add(btnTags);
