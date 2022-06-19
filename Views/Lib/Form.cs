@@ -30,7 +30,7 @@ namespace Views.Lib {
                     this.ClientSize = new System.Drawing.Size(600, 600);
                     break;
                 default:
-                    this.ClientSize = new System.Drawing.Size(300, 300);
+                    this.ClientSize = new System.Drawing.Size(350, 300);
                     break;
             }
             this.Text = Title;

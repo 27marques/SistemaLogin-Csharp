@@ -26,7 +26,7 @@ namespace Views
             this.parent = parent;
             this. parent.Hide();
             listView = new ListView();
-			listView.Location = new Point(10, 20);
+			listView.Location = new Point(30, 20);
 			listView.Size = new Size(280,180);
             listView.View = View.Details;
             listView.Columns.Add("ID", -2, HorizontalAlignment.Left);
@@ -38,10 +38,10 @@ namespace Views
 			listView.AllowColumnReorder = true;
 			listView.Sorting = SortOrder.Ascending;
 			
-            btnCadastrar = new ButtonForm("Cadastrar", 10, 220, this.handleIncluir);
-            btnEditar = new ButtonForm("Editar", 10, 260, this.handleAlterar);
-            btnExcluir = new ButtonForm("Excluir", 120, 220, this.handleExcluir);
-            btnCancelar = new ButtonForm("Voltar", 120, 260, this.handleCancel);
+            btnCadastrar = new ButtonForm("Cadastrar", 50, 220, this.handleIncluir);
+            btnEditar = new ButtonForm("Editar", 50, 260, this.handleAlterar);
+            btnExcluir = new ButtonForm("Excluir", 200, 220, this.handleExcluir);
+            btnCancelar = new ButtonForm("Voltar", 200, 260, this.handleCancel);
 
             this.LoadInfo();
             this.Controls.Add(listView);
@@ -60,7 +60,7 @@ namespace Views
             {
                 ListViewItem lvItem = new ListViewItem(item.Id.ToString());
                 lvItem.SubItems.Add(item.Nome);
-                lvItem.SubItems.Add(item.CategoriaId.ToString());
+                lvItem.SubItems.Add(item.Categoria.Nome);
                 lvItem.SubItems.Add(item.Url);
 
                 this.listView.Items.Add(lvItem);
