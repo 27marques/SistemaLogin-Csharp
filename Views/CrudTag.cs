@@ -39,7 +39,7 @@ namespace Views
             btnCadastrar = new ButtonForm("Cadastrar", 10, 220, this.handleIncluir);
             btnEditar = new ButtonForm("Editar", 10, 260, this.handleAlterar);
             btnExcluir = new ButtonForm("Excluir", 120, 220, this.handleExcluir);
-            btnCancelar = new ButtonForm("Cancelar", 120, 260, this.handleCancel);
+            btnCancelar = new ButtonForm("Voltar", 120, 260, this.handleCancel);
 
             this.LoadInfo();
             this.Controls.Add(listView);
