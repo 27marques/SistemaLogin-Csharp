@@ -5,7 +5,8 @@ namespace Views.Lib {
     {
         Small,
         Medium,
-        Large
+        Large,
+        Especific
     }
 
 
@@ -19,6 +20,9 @@ namespace Views.Lib {
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             switch (size)
             {
+                case SizeScreen.Especific:
+                    this.ClientSize = new System.Drawing.Size(450, 900);
+                    break;
                 case SizeScreen.Large:
                     this.ClientSize = new System.Drawing.Size(900, 900);
                     break;
