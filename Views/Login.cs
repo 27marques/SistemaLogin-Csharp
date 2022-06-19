@@ -25,7 +25,7 @@ namespace Views
             fieldSenha.txtField.PasswordChar = '*';
 
 			btnConfirmar = new ButtonForm("Confirmar", 50, 220, this.handleConfirm);
-            btnCancelar = new ButtonForm("Cancelar", 180, 220, this.handleCancel);
+            btnCancelar = new ButtonForm("Sair", 180, 220, this.handleCancel);
 
             this.Controls.Add(fieldUsuario.lblField);
             this.Controls.Add(fieldUsuario.txtField);
