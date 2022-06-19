@@ -29,9 +29,9 @@ namespace Views
 			listView.Location = new Point(10, 20);
 			listView.Size = new Size(280,180);
             listView.View = View.Details;
-            listView.Columns.Add("Nome", -2, HorizontalAlignment.Left);
-    		listView.Columns.Add("Email", -2, HorizontalAlignment.Left);
-            listView.Columns.Add("Senha", -2, HorizontalAlignment.Left);
+            listView.Columns.Add("Id", -2, HorizontalAlignment.Left);
+    		listView.Columns.Add("Nome", -2, HorizontalAlignment.Left);
+            listView.Columns.Add("E-mail", -2, HorizontalAlignment.Left);
 			listView.FullRowSelect = true;
 			listView.GridLines = true;
 			listView.AllowColumnReorder = true;
@@ -40,7 +40,7 @@ namespace Views
             btnCadastrar = new ButtonForm("Cadastrar", 10, 220, this.handleIncluir);
             btnEditar = new ButtonForm("Editar", 10, 260, this.handleAlterar);
             btnExcluir = new ButtonForm("Excluir", 120, 220, this.handleExcluir);
-            btnCancelar = new ButtonForm("Cancelar", 120, 260, this.handleCancel);
+            btnCancelar = new ButtonForm("Voltar", 120, 260, this.handleCancel);
 
             this.LoadInfo();
             this.Controls.Add(listView);
