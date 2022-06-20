@@ -15,7 +15,7 @@ namespace Views
     public class CrudSenha : BaseForm
     {
         Form parent;
-        ListView listView;
+        public ListView listView;
         ButtonForm btnCadastrar;
         ButtonForm btnEditar;
         ButtonForm btnExcluir;
@@ -76,7 +76,7 @@ namespace Views
         private void handleAlterar(object sender, EventArgs e)
         {
             if (this.listView.SelectedItems.Count > 0) {
-                //(new AlterarSenha(this)).Show();
+                (new AlterarSenha1(this)).Show();
                 this.Hide();
             } else {
                 MessageBox.Show("Selecione ao menos um item", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);

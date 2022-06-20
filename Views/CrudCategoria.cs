@@ -85,8 +85,6 @@ namespace Views
         {
             if (this.listView.SelectedItems.Count > 0) {
                 int id = Convert.ToInt32(this.listView.SelectedItems[0].Text);
-                //(new ExcluirCategoria(this)).Show();
-                //this.Hide();
                 DialogResult result = MessageBox.Show(
                     $"Deseja excluir o item {id}?",
                     "Confirmar",
