@@ -84,9 +84,9 @@ namespace Views
         private void handleConfirm(object sender, EventArgs e)
         {
             try {
-                string comboBoxValue = this.comboBox.Text; // "1 - Nome"
-                string[] destructComboBoxValue = comboBoxValue.Split('-'); // ["1 ", " Nome"];
-                string idCategoria = destructComboBoxValue[0].Trim(); // "1 " => "1"
+                string comboBoxValue = this.comboBox.Text; 
+                string[] destructComboBoxValue = comboBoxValue.Split('-'); 
+                string idCategoria = destructComboBoxValue[0].Trim(); 
                 SenhaController.InserirSenha(
                     this.fieldNome.txtField.Text,
                     Convert.ToInt32(idCategoria),
