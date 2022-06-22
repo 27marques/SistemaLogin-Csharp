@@ -67,46 +67,46 @@ namespace Controllers
             string Procedimento
         )
         {
-            Senha senha;
-            try {
-                senha = Senha.GetSenha(Id);
-            }
-            catch
-            {
-                throw new Exception("Senha não encontrada.");
-            }
+            Senha senha = Senha.GetSenha(Id);
 
             if (!String.IsNullOrEmpty(Nome))
             {
                 senha.Nome = Nome;
             }
-            senha.Nome = Nome;
-
-            if (CategoriaId > 0)
-            {
-                senha.CategoriaId = CategoriaId;
+            try {
+                CategoriaController.GetCategoria(CategoriaId);
             }
-            senha.CategoriaId = CategoriaId;
-
-            if (!String.IsNullOrEmpty(Url))
+            catch
+            {
+                throw new Exception("Categoria inválida");
+            }
+            Regex rx = new Regex(
+                "https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+"
+                + "[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+"
+                + "[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))"
+                + "[a-zA-Z0-9]+\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]+\\.[^\\s]{2,}"
+            );
+            if (!String.IsNullOrEmpty(Url)) 
             {
                 senha.Url = Url;
             }
-            senha.Url = Url;
-
-            if (!String.IsNullOrEmpty(Usuario))
+            if (!String.IsNullOrEmpty(Usuario)) 
             {
                 senha.Usuario = Usuario;
             }
-            senha.Usuario = Usuario;
-
-            if (!String.IsNullOrEmpty(SenhaEncrypt))
+            if (SenhaEncrypt.Length < 8)
             {
-                senha.SenhaEncrypt = SenhaEncrypt;
+                throw new Exception("A senha deve ter no mínimo 8 caracteres.");
             }
-            senha.SenhaEncrypt = SenhaEncrypt;
-            senha.Procedimento = Procedimento;
-
+            else
+            {
+                SenhaEncrypt = BCrypt.Net.BCrypt.HashPassword(SenhaEncrypt);
+            }
+            if (!String.IsNullOrEmpty(Procedimento)) 
+            {
+                senha.Procedimento = Procedimento;
+            }
+            Models.Senha.AlterarSenha(Id, Nome, CategoriaId, Url, Usuario, SenhaEncrypt, Procedimento);
             return senha;
                
         }
