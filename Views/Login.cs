@@ -37,6 +37,7 @@ namespace Views
             this.Controls.Add(btnConfirmar);
             this.Controls.Add(btnCancelar);
             this.Controls.Add(btnCadastrar);
+            this.BackColor = Color.AliceBlue;
         }
 
         private void handleConfirm(object sender, EventArgs e)
