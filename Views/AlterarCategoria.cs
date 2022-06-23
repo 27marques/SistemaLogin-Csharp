@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Threading;
 using Views.Lib;
 using Controllers;
+using Models;
 
 namespace Views
 {
@@ -18,6 +19,7 @@ namespace Views
         FieldForm fieldDescricao;
 		ButtonForm btnConfirmar;
         ButtonForm btnCancelar;
+        
 
         public AlterarCategoria(CrudCategoria parent) : base("Alterar Categoria",SizeScreen.Small)
         {
@@ -27,8 +29,8 @@ namespace Views
             fieldNome = new FieldForm("Nome",20,20,180,20);
             fieldDescricao = new FieldForm("Descrição",20,100,180,60);
 
-			btnConfirmar = new ButtonForm("Confirmar", 180, 220, this.handleConfirm);
-            btnCancelar = new ButtonForm("Cancelar", 180, 260, this.handleCancel);
+			btnConfirmar = new ButtonForm("Confirmar", 50, 230, this.handleConfirm);
+            btnCancelar = new ButtonForm("Cancelar", 200, 230, this.handleCancel);
 
             this.Controls.Add(fieldNome.lblField);
             this.Controls.Add(fieldNome.txtField);
