@@ -23,6 +23,7 @@ namespace Views
         RichTextBox richBox;
 		ButtonForm btnConfirmar;
         ButtonForm btnCancelar;
+        private object itemList;
 
         public CadastrarSenha1(CrudSenha parent) : base("InserirSenha",SizeScreen.Especific)
         {
@@ -98,7 +99,13 @@ namespace Views
                 if (checkedList.SelectedItems.Count > 0) {
                     foreach (var item in checkedList.SelectedItems)
                     {
-                        //SenhaTagController.InserirSenhaTag(0, item.ToString());
+                        string checkedValue = itemList.ToString(); // "1 - Nome"
+                        string[] destructCheckedValue = checkedValue.Split('-'); // ["1 ", " Nome"];
+                        string idTagString = destructCheckedValue[0].Trim(); // "1 " => "1"
+                        string idSenhaString = destructCheckedValue[0].Trim(); // "1 " => "1"
+                        int TagId = Convert.ToInt32(idTagString);
+                        int SenhaId = Convert.ToInt32(idSenhaString);
+                        SenhaTagController.InserirSenhaTag(TagId, SenhaId);
                     }
                     //this.Hide();
 
