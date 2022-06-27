@@ -30,5 +30,30 @@ namespace Controllers
         {
             return SenhaTag.GetSenhaTags();
         }
+
+        public static SenhaTag GetById(
+            int Id
+        )  
+        {
+            return SenhaTag.GetById(Id);
+        }
+
+        public static void ExcluirSenhaTag(
+            int Id
+        )
+        {
+            try
+            {
+                SenhaTag senhaTag = SenhaTag.GetById(Id);
+                SenhaTag.RemoverSenhaTag(senhaTag);
+            }
+            catch
+            {
+                throw new Exception(
+                    "Não foi possível excluir a Tag de Senha "
+                    + "pois o ID não existe"
+                );
+            }
+        }
     }
 }
