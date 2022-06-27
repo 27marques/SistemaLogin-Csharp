@@ -84,11 +84,17 @@ namespace Views
         private void handleConfirm(object sender, EventArgs e)
         {
             try {
-                string comboBoxValue = this.comboBox.Text; 
-                string[] destructComboBoxValue = comboBoxValue.Split('-'); 
-                string idCategoria = destructComboBoxValue[0].Trim();
+                if (checkedList.CheckedItems.Count == 0) 
+                {
+                    MessageBox.Show("Selecione 1 Tag da lista");
+                    return;
+                }
+
+                string comboBoxValue = this.comboBox.Text; // "1 - Nome"
+                string[] destructComboBoxValue = comboBoxValue.Split('-'); // ["1 ", " Nome"];
+                string idCategoria = destructComboBoxValue[0].Trim(); // "1 " => "1"
                 ListViewItem item = this.parent.listView.SelectedItems[0];
-                int id = Convert.ToInt32(item.Text); 
+                int id = Convert.ToInt32(item.Text);
                 SenhaController.AlterarSenha(
                     id,
                     this.fieldNome.txtField.Text,
@@ -97,17 +103,22 @@ namespace Views
                     this.fieldUsuario.txtField.Text,
                     this.fieldSenha.txtField.Text,
                     this.fieldProcedimento.txtField.Text
+                    //TAG??
                 );
-                /*if (checkedList.SelectedItems.Count > 0) {
-                    foreach (var item in checkedList.SelectedItems)
-                    {
-                        SenhaTagController.InserirSenhaTag(0, item.ToString());
+                
+                IEnumerable<Tag> tags = TagController.VisualizarTags();
+                foreach (Tag tag in tags)
+                {
+                    SenhaTag senhaTag = SenhaTagController.GetSenhaTag(id, tag.Id);
+                    bool checkedSenhaTag = checkedList.CheckedItems.Contains(tag.ToString());
+                    if (checkedSenhaTag && senhaTag == null) {
+                        SenhaTagController.InserirSenhaTag(id, tag.Id);
                     }
-                    this.Hide();
+                    if (!checkedSenhaTag && senhaTag != null) {
+                        SenhaTagController.ExcluirSenhaTag(senhaTag.Id);
+                    }
+                }
 
-                } else {
-                    MessageBox.Show("Selecione 1 Tag da lista");
-                }*/
                 this.parent.LoadInfo();
                 this.parent.Show();
                 this.Close();
