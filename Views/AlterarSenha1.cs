@@ -23,11 +23,18 @@ namespace Views
         RichTextBox richBox;
 		ButtonForm btnConfirmar;
         ButtonForm btnCancelar;
+        ListViewItem selectedItem;
+        int id = 0;
 
         public AlterarSenha1(CrudSenha parent) : base("Alterar Senha",SizeScreen.Especific)
         {
             this.parent = parent;
             this.parent.Hide();
+
+            this.selectedItem = this.parent.listView.SelectedItems[0];
+            this.id = Convert.ToInt32(this.selectedItem.Text);
+
+            Senha senha = SenhaController.GetSenha(id);
 
             fieldNome = new FieldForm("Nome",20,10,260,20);
             fieldCategoria = new FieldForm("Categoria",20,80,260,60);
@@ -64,6 +71,15 @@ namespace Views
 			btnConfirmar = new ButtonForm("Confirmar", 100, 650, this.handleConfirm);
             btnCancelar = new ButtonForm("Cancelar", 250, 650, this.handleCancel);
 
+            this.fieldNome.txtField.Text = senha.Nome;
+            this.fieldCategoria.txtField.Text = senha.Categoria.Nome;
+            this.fieldUrl.txtField.Text = senha.Url;
+            this.fieldUsuario.txtField.Text = senha.Usuario;
+            this.fieldSenha.txtField.Text = senha.SenhaEncrypt;
+            this.fieldProcedimento.txtField.Text = senha.Procedimento;
+            this.fieldTag.txtField.Text = senha.Tag;
+            
+            
             this.Controls.Add(checkedList);
             this.Controls.Add(comboBox);
             this.Controls.Add(fieldNome.lblField);
