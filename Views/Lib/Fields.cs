@@ -25,8 +25,7 @@ namespace Views.Lib
             txtField = new TextBox();
             txtField.Location = new Point(X, Y + 35);
             txtField.Size = new Size(WidthTextBox, HeightTextBox);
-
-            this.txtField.BackColor = Color.AliceBlue;
+            txtField.BackColor = Color.FromArgb(173, 181, 189);
         }
     }
 }

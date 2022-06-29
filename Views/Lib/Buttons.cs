@@ -15,7 +15,7 @@ namespace Views.Lib
 			this.Size = new Size(100,30);
 			this.Location = new Point(X, Y);
 			this.Click += new EventHandler(eventHandler);
-            this.BackColor = Color.AliceBlue;
+            this.BackColor = Color.FromArgb(173, 181, 189);
         }
     }
 }

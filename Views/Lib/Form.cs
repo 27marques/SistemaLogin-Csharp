@@ -36,7 +36,7 @@ namespace Views.Lib {
             }
             this.Text = Title;
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.BackColor = Color.AliceBlue;
+            this.BackColor = Color.FromArgb(173, 181, 189);
         }
     }
     
