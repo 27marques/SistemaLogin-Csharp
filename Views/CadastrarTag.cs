@@ -23,10 +23,10 @@ namespace Views
             this.parent = parent;
             this.parent.Hide();
 
-            fieldDescricao = new FieldForm("Descrição",20,100,180,60);
+            fieldDescricao = new FieldForm("Descrição",80,100,180,60);
                         
-			btnConfirmar = new ButtonForm("Confirmar", 180, 220, this.handleConfirm);
-            btnCancelar = new ButtonForm("Cancelar", 180, 260, this.handleCancel);
+			btnConfirmar = new ButtonForm("Confirmar", 60, 220, this.handleConfirm);
+            btnCancelar = new ButtonForm("Cancelar", 180, 220, this.handleCancel);
 
             this.Controls.Add(fieldDescricao.lblField);
             this.Controls.Add(fieldDescricao.txtField);

@@ -36,17 +36,17 @@ namespace Views
 
             Senha senha = SenhaController.GetSenha(id);
 
-            fieldNome = new FieldForm("Nome",20,10,260,20);
-            fieldCategoria = new FieldForm("Categoria",20,80,260,60);
-            fieldUrl = new FieldForm("Url",20,150,260,60);
-            fieldUsuario = new FieldForm("Usuario",20,225,260,60);
-            fieldSenha = new FieldForm("Senha",20,300,260,60);
-            fieldProcedimento = new FieldForm("Procedimento",20,390,260,60);
-            fieldTag = new FieldForm("Tag",20,520,260,60);
+            fieldNome = new FieldForm("Nome",80,10,260,20);
+            fieldCategoria = new FieldForm("Categoria",80,80,260,60);
+            fieldUrl = new FieldForm("Url",80,150,260,60);
+            fieldUsuario = new FieldForm("Usuario",80,225,260,60);
+            fieldSenha = new FieldForm("Senha",80,300,260,60);
+            fieldProcedimento = new FieldForm("Procedimento",80,390,260,60);
+            fieldTag = new FieldForm("Tag",80,520,260,60);
 
             IEnumerable<Tag> tags = TagController.VisualizarTags();
             checkedList = new CheckedListBox();
-			this.checkedList.Location = new System.Drawing.Point(20, 550);
+			this.checkedList.Location = new System.Drawing.Point(80, 550);
             this.checkedList.Size = new System.Drawing.Size(260, 100);
             this.checkedList.TabIndex = 0;
             foreach (Tag item in tags)
@@ -56,7 +56,7 @@ namespace Views
 
             IEnumerable<Categoria> categorias = CategoriaController.VisualizarCategoria();
             comboBox = new ComboBox(); 
-            comboBox.Location = new System.Drawing.Point(20, 110);
+            comboBox.Location = new System.Drawing.Point(80, 110);
             comboBox.Name = "Categoria";
             comboBox.Size = new System.Drawing.Size(245, 15); 
             foreach (Categoria item in categorias)
@@ -65,7 +65,7 @@ namespace Views
             }
 
             richBox = new RichTextBox();
-            richBox.Location = new Point(20, 410);
+            richBox.Location = new Point(80, 410);
             richBox.Size = new System.Drawing.Size(230, 100);
             
 			btnConfirmar = new ButtonForm("Confirmar", 100, 650, this.handleConfirm);
