@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Threading;
 using Views.Lib;
 using Controllers;
+using Models;
 
 namespace Views
 {
@@ -18,10 +19,18 @@ namespace Views
         ButtonForm btnConfirmar;
         ButtonForm btnCancelar;
 
+        ListViewItem selectedItem;
+        int id = 0;
+
         public AlterarTag(CrudTag parent) : base("Alterar Tag", SizeScreen.Small) 
         {
             this.parent = parent;
             this.parent.Hide();
+
+            this.selectedItem = this.parent.listView.SelectedItems[0];
+            this.id = Convert.ToInt32(this.selectedItem.Text);
+
+            Tag tag = TagController.GetTag(id);
 
             fieldDescricao = new FieldForm("Descrição",20,100,180,60);
                         
@@ -32,6 +41,8 @@ namespace Views
             this.Controls.Add(fieldDescricao.txtField);
             this.Controls.Add(btnConfirmar);
             this.Controls.Add(btnCancelar);
+
+            this.fieldDescricao.txtField.Text = tag.Descricao;
         }
 
         private void handleConfirm(object sender, EventArgs e)
