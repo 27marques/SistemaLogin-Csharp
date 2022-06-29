@@ -8,6 +8,8 @@ namespace Models
 {
     public class Senha
     {
+        internal readonly string Tag;
+
         public int Id { get; set; }
         public string Nome { get; set; }
         public int CategoriaId { get; set; }
