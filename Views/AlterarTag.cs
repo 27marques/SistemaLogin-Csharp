@@ -32,7 +32,7 @@ namespace Views
 
             Tag tag = TagController.GetTag(id);
 
-            fieldDescricao = new FieldForm("Descrição",20,100,180,60);
+            fieldDescricao = new FieldForm("Descrição",80,100,180,60);
                         
 			btnConfirmar = new ButtonForm("Confirmar", 40, 230, this.handleConfirm);
             btnCancelar = new ButtonForm("Cancelar", 200, 230, this.handleCancel);

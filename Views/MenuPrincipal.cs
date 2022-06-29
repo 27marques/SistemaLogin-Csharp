@@ -25,11 +25,11 @@ namespace Views
         {
             this.parent = parent;
             this.parent.Hide();
-            btnCategorias = new ButtonForm("Categoria", 30, 70, this.handleCategorias);
-            btnTags = new ButtonForm("Tags", 30, 120, this.handleTags);
-            btnSenhas = new ButtonForm("Senhas", 170, 70, this.handleSenhas);
-            btnUsuario = new ButtonForm("Usuário", 170, 120, this.handleUsuario);
-            btnCancelar = new ButtonForm("Voltar", 100, 230, this.handleCancel);
+            btnCategorias = new ButtonForm("Categoria", 60, 70, this.handleCategorias);
+            btnTags = new ButtonForm("Tags", 60, 150, this.handleTags);
+            btnSenhas = new ButtonForm("Senhas", 200, 70, this.handleSenhas);
+            btnUsuario = new ButtonForm("Usuário", 200, 150, this.handleUsuario);
+            btnCancelar = new ButtonForm("Voltar", 120, 230, this.handleCancel);
 
             this.Controls.Add(btnCategorias);
             this.Controls.Add(btnTags);

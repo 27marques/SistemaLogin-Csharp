@@ -33,9 +33,9 @@ namespace Views
 
             Usuario usuario = UsuarioController.GetUsuario(id);
 
-            fieldNome = new FieldForm("Nome",20,20,180,20);
-            fieldEmail = new FieldForm("E-mail",20,100,180,60);
-            fieldSenha = new FieldForm("Senha",20,180,180,100);
+            fieldNome = new FieldForm("Nome",80,20,180,20);
+            fieldEmail = new FieldForm("E-mail",80,100,180,60);
+            fieldSenha = new FieldForm("Senha",80,180,180,100);
            		
             btnConfirmar = new ButtonForm("Confirmar", 60, 260, this.handleConfirm);
             btnCancelar = new ButtonForm("Cancelar", 180, 260, this.handleCancel);

@@ -22,8 +22,8 @@ namespace Views
         public Login() : base("Login",SizeScreen.Small)
         {
            
-            fieldUsuario = new FieldForm("Usuário",20,20,180,20);
-            fieldSenha = new FieldForm("Senha",20,100,180,60);
+            fieldUsuario = new FieldForm("Usuário",80,20,180,20);
+            fieldSenha = new FieldForm("Senha",80,100,180,60);
             fieldSenha.txtField.PasswordChar = '*';
 
 			btnConfirmar = new ButtonForm("Confirmar", 50, 180, this.handleConfirm);

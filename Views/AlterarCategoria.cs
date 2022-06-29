@@ -33,8 +33,8 @@ namespace Views
 
             Categoria categoria = CategoriaController.GetCategoria(id);
 
-            fieldNome = new FieldForm("Nome",20,20,180,20);
-            fieldDescricao = new FieldForm("Descrição",20,100,180,60);
+            fieldNome = new FieldForm("Nome",80,20,180,20);
+            fieldDescricao = new FieldForm("Descrição",80,100,180,60);
 
 			btnConfirmar = new ButtonForm("Confirmar", 50, 230, this.handleConfirm);
             btnCancelar = new ButtonForm("Cancelar", 200, 230, this.handleCancel);
