@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Threading;
 using Views.Lib;
 using Controllers;
+using Models;
 
 namespace Views
 {
@@ -19,11 +20,18 @@ namespace Views
         FieldForm fieldSenha;
         ButtonForm btnConfirmar;
         ButtonForm btnCancelar;
+        ListViewItem selectedItem;
+        int id = 0;
 
         public AlterarUsuario(CrudUsuario parent) : base ("Alterar Usuário",SizeScreen.Small)
         {
             this.parent = parent;
             this.parent.Hide();
+
+            this.selectedItem = this.parent.listView.SelectedItems[0];
+            this.id = Convert.ToInt32(this.selectedItem.Text);
+
+            Usuario usuario = UsuarioController.GetUsuario(id);
 
             fieldNome = new FieldForm("Nome",20,20,180,20);
             fieldEmail = new FieldForm("E-mail",20,100,180,60);
@@ -32,6 +40,10 @@ namespace Views
             btnConfirmar = new ButtonForm("Confirmar", 60, 260, this.handleConfirm);
             btnCancelar = new ButtonForm("Cancelar", 180, 260, this.handleCancel);
 
+            this.fieldNome.txtField.Text = usuario.Nome;
+            this.fieldEmail.txtField.Text = usuario.Nome;
+            this.fieldSenha.txtField.Text = usuario.Senha;
+            
             this.Controls.Add(fieldNome.lblField);
             this.Controls.Add(fieldNome.txtField);
             this.Controls.Add(fieldEmail.lblField);
