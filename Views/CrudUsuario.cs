@@ -20,23 +20,23 @@ namespace Views
         ButtonForm btnEditar;
         ButtonForm btnExcluir;
         ButtonForm btnCancelar;
-       
-        public CrudUsuario(Form parent) : base("Lista de Usuários",SizeScreen.Small)
+
+        public CrudUsuario(Form parent) : base("Lista de Usuários", SizeScreen.Small)
         {
             this.parent = parent;
             this.parent.Hide();
             listView = new ListView();
-			listView.Location = new Point(30, 20);
-			listView.Size = new Size(280,180);
+            listView.Location = new Point(30, 20);
+            listView.Size = new Size(280, 180);
             listView.View = View.Details;
             listView.Columns.Add("Id", -2, HorizontalAlignment.Left);
-    		listView.Columns.Add("Nome", -2, HorizontalAlignment.Left);
+            listView.Columns.Add("Nome", -2, HorizontalAlignment.Left);
             listView.Columns.Add("E-mail", -2, HorizontalAlignment.Left);
-			listView.FullRowSelect = true;
-			listView.GridLines = true;
-			listView.AllowColumnReorder = true;
-			listView.Sorting = SortOrder.Ascending;
-			
+            listView.FullRowSelect = true;
+            listView.GridLines = true;
+            listView.AllowColumnReorder = true;
+            listView.Sorting = SortOrder.Ascending;
+
             btnCadastrar = new ButtonForm("Cadastrar", 50, 220, this.handleIncluir);
             btnEditar = new ButtonForm("Editar", 50, 260, this.handleAlterar);
             btnExcluir = new ButtonForm("Excluir", 200, 220, this.handleExcluir);
@@ -51,7 +51,8 @@ namespace Views
 
         }
 
-        public void LoadInfo() {
+        public void LoadInfo()
+        {
             IEnumerable<Usuario> usuarios = UsuarioController.VisualizarUsuario();
 
             this.listView.Items.Clear();
@@ -65,7 +66,7 @@ namespace Views
                 this.listView.Items.Add(lvItem);
             }
         }
-  
+
         private void handleIncluir(object sender, EventArgs e)
         {
             (new CadastrarUsuario(this)).Show();
@@ -74,17 +75,21 @@ namespace Views
         }
         private void handleAlterar(object sender, EventArgs e)
         {
-            if (this.listView.SelectedItems.Count > 0) {
+            if (this.listView.SelectedItems.Count > 0)
+            {
                 (new AlterarUsuario(this)).Show();
                 this.Hide();
-            } else {
+            }
+            else
+            {
                 MessageBox.Show("Selecione ao menos um item", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
 
         }
         private void handleExcluir(object sender, EventArgs e)
         {
-            if (this.listView.SelectedItems.Count > 0) {
+            if (this.listView.SelectedItems.Count > 0)
+            {
                 int id = Convert.ToInt32(this.listView.SelectedItems[0].Text);
                 DialogResult result = MessageBox.Show(
                     $"Deseja excluir o item {id}?",
@@ -93,11 +98,14 @@ namespace Views
                     MessageBoxIcon.Question
                 );
 
-                if (result == DialogResult.Yes) {
+                if (result == DialogResult.Yes)
+                {
                     UsuarioController.RemoverUsuario(id);
                     this.LoadInfo();
                 }
-            } else {
+            }
+            else
+            {
                 MessageBox.Show("Selecione ao menos um item", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
 
@@ -105,7 +113,7 @@ namespace Views
         private void handleCancel(object sender, EventArgs e)
         {
             this.parent.Show();
-            this.Close(); 
+            this.Close();
         }
     }
 }

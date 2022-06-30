@@ -20,24 +20,24 @@ namespace Views
         ButtonForm btnEditar;
         ButtonForm btnExcluir;
         ButtonForm btnCancelar;
-       
-        public CrudSenha(Form parent) : base("Senhas",SizeScreen.Small)
+
+        public CrudSenha(Form parent) : base("Senhas", SizeScreen.Small)
         {
             this.parent = parent;
-            this. parent.Hide();
+            this.parent.Hide();
             listView = new ListView();
-			listView.Location = new Point(30, 20);
-			listView.Size = new Size(280,180);
+            listView.Location = new Point(30, 20);
+            listView.Size = new Size(280, 180);
             listView.View = View.Details;
             listView.Columns.Add("ID", -2, HorizontalAlignment.Left);
             listView.Columns.Add("Nome", -2, HorizontalAlignment.Left);
-    		listView.Columns.Add("Categoria", -2, HorizontalAlignment.Left);
+            listView.Columns.Add("Categoria", -2, HorizontalAlignment.Left);
             listView.Columns.Add("URL", -2, HorizontalAlignment.Left);
-			listView.FullRowSelect = true;
-			listView.GridLines = true;
-			listView.AllowColumnReorder = true;
-			listView.Sorting = SortOrder.Ascending;
-			
+            listView.FullRowSelect = true;
+            listView.GridLines = true;
+            listView.AllowColumnReorder = true;
+            listView.Sorting = SortOrder.Ascending;
+
             btnCadastrar = new ButtonForm("Cadastrar", 50, 220, this.handleIncluir);
             btnEditar = new ButtonForm("Editar", 50, 260, this.handleAlterar);
             btnExcluir = new ButtonForm("Excluir", 200, 220, this.handleExcluir);
@@ -51,8 +51,9 @@ namespace Views
             this.Controls.Add(btnCancelar);
 
         }
-  
-        public void LoadInfo() {
+
+        public void LoadInfo()
+        {
             IEnumerable<Senha> senhas = SenhaController.VisualizarSenha();
 
             this.listView.Items.Clear();
@@ -75,17 +76,21 @@ namespace Views
         }
         private void handleAlterar(object sender, EventArgs e)
         {
-            if (this.listView.SelectedItems.Count > 0) {
+            if (this.listView.SelectedItems.Count > 0)
+            {
                 (new AlterarSenha1(this)).Show();
                 this.Hide();
-            } else {
+            }
+            else
+            {
                 MessageBox.Show("Selecione ao menos um item", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
 
         }
         private void handleExcluir(object sender, EventArgs e)
         {
-            if (this.listView.SelectedItems.Count > 0) {
+            if (this.listView.SelectedItems.Count > 0)
+            {
                 int id = Convert.ToInt32(this.listView.SelectedItems[0].Text);
                 DialogResult result = MessageBox.Show(
                     $"Deseja excluir o item {id}?",
@@ -94,11 +99,14 @@ namespace Views
                     MessageBoxIcon.Question
                 );
 
-                if (result == DialogResult.Yes) {
+                if (result == DialogResult.Yes)
+                {
                     SenhaController.RemoverSenha(id);
                     this.LoadInfo();
                 }
-            } else {
+            }
+            else
+            {
                 MessageBox.Show("Selecione ao menos um item", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
 

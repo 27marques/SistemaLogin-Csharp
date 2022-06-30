@@ -21,12 +21,12 @@ namespace Views
         CheckedListBox checkedList;
         ComboBox comboBox;
         RichTextBox richBox;
-		ButtonForm btnConfirmar;
+        ButtonForm btnConfirmar;
         ButtonForm btnCancelar;
         ListViewItem selectedItem;
         int id = 0;
 
-        public AlterarSenha1(CrudSenha parent) : base("Alterar Senha",SizeScreen.Especific)
+        public AlterarSenha1(CrudSenha parent) : base("Alterar Senha", SizeScreen.Especific)
         {
             this.parent = parent;
             this.parent.Hide();
@@ -36,17 +36,17 @@ namespace Views
 
             Senha senha = SenhaController.GetSenha(id);
 
-            fieldNome = new FieldForm("Nome",80,10,260,20);
-            fieldCategoria = new FieldForm("Categoria",80,80,260,60);
-            fieldUrl = new FieldForm("Url",80,150,260,60);
-            fieldUsuario = new FieldForm("Usuario",80,225,260,60);
-            fieldSenha = new FieldForm("Senha",80,300,260,60);
-            fieldProcedimento = new FieldForm("Procedimento",80,390,260,60);
-            fieldTag = new FieldForm("Tag",80,520,260,60);
+            fieldNome = new FieldForm("Nome", 80, 10, 260, 20);
+            fieldCategoria = new FieldForm("Categoria", 80, 80, 260, 60);
+            fieldUrl = new FieldForm("Url", 80, 150, 260, 60);
+            fieldUsuario = new FieldForm("Usuario", 80, 225, 260, 60);
+            fieldSenha = new FieldForm("Senha", 80, 300, 260, 60);
+            fieldProcedimento = new FieldForm("Procedimento", 80, 390, 260, 60);
+            fieldTag = new FieldForm("Tag", 80, 520, 260, 60);
 
             IEnumerable<Tag> tags = TagController.VisualizarTags();
             checkedList = new CheckedListBox();
-			this.checkedList.Location = new System.Drawing.Point(80, 550);
+            this.checkedList.Location = new System.Drawing.Point(80, 550);
             this.checkedList.Size = new System.Drawing.Size(260, 100);
             this.checkedList.TabIndex = 0;
             foreach (Tag item in tags)
@@ -55,10 +55,10 @@ namespace Views
             }
 
             IEnumerable<Categoria> categorias = CategoriaController.VisualizarCategoria();
-            comboBox = new ComboBox(); 
+            comboBox = new ComboBox();
             comboBox.Location = new System.Drawing.Point(80, 110);
             comboBox.Name = "Categoria";
-            comboBox.Size = new System.Drawing.Size(245, 15); 
+            comboBox.Size = new System.Drawing.Size(245, 15);
             foreach (Categoria item in categorias)
             {
                 comboBox.Items.Add(item.Id + " - " + item.Nome);
@@ -67,8 +67,8 @@ namespace Views
             richBox = new RichTextBox();
             richBox.Location = new Point(80, 410);
             richBox.Size = new System.Drawing.Size(230, 100);
-            
-			btnConfirmar = new ButtonForm("Confirmar", 100, 650, this.handleConfirm);
+
+            btnConfirmar = new ButtonForm("Confirmar", 100, 650, this.handleConfirm);
             btnCancelar = new ButtonForm("Cancelar", 250, 650, this.handleCancel);
 
             this.fieldNome.txtField.Text = senha.Nome;
@@ -78,13 +78,13 @@ namespace Views
             this.fieldSenha.txtField.Text = senha.SenhaEncrypt;
             this.fieldProcedimento.txtField.Text = senha.Procedimento;
             this.fieldTag.txtField.Text = senha.Tag;
-            
-            
+
+
             this.Controls.Add(checkedList);
             this.Controls.Add(comboBox);
             this.Controls.Add(fieldNome.lblField);
             this.Controls.Add(fieldNome.txtField);
-            this.Controls.Add(fieldCategoria.lblField); 
+            this.Controls.Add(fieldCategoria.lblField);
             this.Controls.Add(fieldUrl.lblField);
             this.Controls.Add(fieldUrl.txtField);
             this.Controls.Add(fieldUsuario.lblField);
@@ -99,8 +99,9 @@ namespace Views
         }
         private void handleConfirm(object sender, EventArgs e)
         {
-            try {
-                if (checkedList.CheckedItems.Count == 0) 
+            try
+            {
+                if (checkedList.CheckedItems.Count == 0)
                 {
                     MessageBox.Show("Selecione 1 Tag da lista");
                     return;
@@ -119,18 +120,20 @@ namespace Views
                     this.fieldUsuario.txtField.Text,
                     this.fieldSenha.txtField.Text,
                     this.fieldProcedimento.txtField.Text
-                    //TAG??
+                //TAG??
                 );
-                
+
                 IEnumerable<Tag> tags = TagController.VisualizarTags();
                 foreach (Tag tag in tags)
                 {
                     SenhaTag senhaTag = SenhaTagController.GetSenhaTag(id, tag.Id);
                     bool checkedSenhaTag = checkedList.CheckedItems.Contains(tag.ToString());
-                    if (checkedSenhaTag && senhaTag == null) {
+                    if (checkedSenhaTag && senhaTag == null)
+                    {
                         SenhaTagController.InserirSenhaTag(id, tag.Id);
                     }
-                    if (!checkedSenhaTag && senhaTag != null) {
+                    if (!checkedSenhaTag && senhaTag != null)
+                    {
                         SenhaTagController.ExcluirSenhaTag(senhaTag.Id);
                     }
                 }
@@ -138,7 +141,9 @@ namespace Views
                 this.parent.LoadInfo();
                 this.parent.Show();
                 this.Close();
-            } catch (Exception err) {
+            }
+            catch (Exception err)
+            {
                 MessageBox.Show(err.Message);
             }
         }
@@ -150,6 +155,6 @@ namespace Views
                 this.Close();
             }
         }
-    
+
     }
 }

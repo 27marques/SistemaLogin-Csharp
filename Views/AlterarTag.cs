@@ -22,7 +22,7 @@ namespace Views
         ListViewItem selectedItem;
         int id = 0;
 
-        public AlterarTag(CrudTag parent) : base("Alterar Tag", SizeScreen.Small) 
+        public AlterarTag(CrudTag parent) : base("Alterar Tag", SizeScreen.Small)
         {
             this.parent = parent;
             this.parent.Hide();
@@ -32,9 +32,9 @@ namespace Views
 
             Tag tag = TagController.GetTag(id);
 
-            fieldDescricao = new FieldForm("Descrição",80,100,180,60);
-                        
-			btnConfirmar = new ButtonForm("Confirmar", 40, 230, this.handleConfirm);
+            fieldDescricao = new FieldForm("Descrição", 80, 100, 180, 60);
+
+            btnConfirmar = new ButtonForm("Confirmar", 40, 230, this.handleConfirm);
             btnCancelar = new ButtonForm("Cancelar", 200, 230, this.handleCancel);
 
             this.Controls.Add(fieldDescricao.lblField);
@@ -47,7 +47,8 @@ namespace Views
 
         private void handleConfirm(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 TagController.AlterarTag(
                     Convert.ToInt32(this.parent.listView.SelectedItems[0].Text),
                     this.fieldDescricao.txtField.Text
@@ -55,22 +56,24 @@ namespace Views
                 this.parent.LoadInfo();
                 this.parent.Show();
                 this.Close();
-            } catch (Exception err) {
+            }
+            catch (Exception err)
+            {
                 MessageBox.Show(err.Message);
             }
 
         }
 
-        
+
         private void handleCancel(object sender, EventArgs e)
         {
-           if (MessageBox.Show(" Deseja mesmo sair? ", "Mensage do sistema ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show(" Deseja mesmo sair? ", "Mensage do sistema ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 this.parent.Show();
                 this.Close();
             }
         }
-    
+
     }
 
 }

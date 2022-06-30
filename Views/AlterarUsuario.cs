@@ -23,7 +23,7 @@ namespace Views
         ListViewItem selectedItem;
         int id = 0;
 
-        public AlterarUsuario(CrudUsuario parent) : base ("Alterar Usuário",SizeScreen.Small)
+        public AlterarUsuario(CrudUsuario parent) : base("Alterar Usuário", SizeScreen.Small)
         {
             this.parent = parent;
             this.parent.Hide();
@@ -33,17 +33,17 @@ namespace Views
 
             Usuario usuario = UsuarioController.GetUsuario(id);
 
-            fieldNome = new FieldForm("Nome",80,20,180,20);
-            fieldEmail = new FieldForm("E-mail",80,100,180,60);
-            fieldSenha = new FieldForm("Senha",80,180,180,100);
-           		
+            fieldNome = new FieldForm("Nome", 80, 20, 180, 20);
+            fieldEmail = new FieldForm("E-mail", 80, 100, 180, 60);
+            fieldSenha = new FieldForm("Senha", 80, 180, 180, 100);
+
             btnConfirmar = new ButtonForm("Confirmar", 60, 260, this.handleConfirm);
             btnCancelar = new ButtonForm("Cancelar", 180, 260, this.handleCancel);
 
             this.fieldNome.txtField.Text = usuario.Nome;
             this.fieldEmail.txtField.Text = usuario.Nome;
             this.fieldSenha.txtField.Text = usuario.Senha;
-            
+
             this.Controls.Add(fieldNome.lblField);
             this.Controls.Add(fieldNome.txtField);
             this.Controls.Add(fieldEmail.lblField);
@@ -56,7 +56,8 @@ namespace Views
 
         private void handleConfirm(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 UsuarioController.AlterarUsuario(
                     Convert.ToInt32(this.parent.listView.SelectedItems[0].Text),
                     this.fieldNome.txtField.Text,
@@ -66,7 +67,9 @@ namespace Views
                 this.parent.LoadInfo();
                 this.parent.Show();
                 this.Close();
-            } catch (Exception err) {
+            }
+            catch (Exception err)
+            {
                 MessageBox.Show(err.Message);
             }
 
@@ -80,7 +83,7 @@ namespace Views
                 this.Close();
             }
         }
-    
+
     }
 
 }

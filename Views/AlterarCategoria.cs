@@ -17,13 +17,13 @@ namespace Views
         CrudCategoria parent;
         FieldForm fieldNome;
         FieldForm fieldDescricao;
-		ButtonForm btnConfirmar;
+        ButtonForm btnConfirmar;
         ButtonForm btnCancelar;
 
         ListViewItem selectedItem;
-        int id = 0;        
+        int id = 0;
 
-        public AlterarCategoria(CrudCategoria parent) : base("Alterar Categoria",SizeScreen.Small)
+        public AlterarCategoria(CrudCategoria parent) : base("Alterar Categoria", SizeScreen.Small)
         {
             this.parent = parent;
             this.parent.Hide();
@@ -33,10 +33,10 @@ namespace Views
 
             Categoria categoria = CategoriaController.GetCategoria(id);
 
-            fieldNome = new FieldForm("Nome",80,20,180,20);
-            fieldDescricao = new FieldForm("Descrição",80,100,180,60);
+            fieldNome = new FieldForm("Nome", 80, 20, 180, 20);
+            fieldDescricao = new FieldForm("Descrição", 80, 100, 180, 60);
 
-			btnConfirmar = new ButtonForm("Confirmar", 50, 230, this.handleConfirm);
+            btnConfirmar = new ButtonForm("Confirmar", 50, 230, this.handleConfirm);
             btnCancelar = new ButtonForm("Cancelar", 200, 230, this.handleCancel);
 
             this.fieldNome.txtField.Text = categoria.Nome;
@@ -52,7 +52,8 @@ namespace Views
 
         private void handleConfirm(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 CategoriaController.AlterarCategoria(
                     Convert.ToInt32(this.parent.listView.SelectedItems[0].Text),
                     this.fieldNome.txtField.Text,
@@ -61,7 +62,9 @@ namespace Views
                 this.parent.LoadInfo();
                 this.parent.Show();
                 this.Close();
-            } catch (Exception err) {
+            }
+            catch (Exception err)
+            {
                 MessageBox.Show(err.Message);
             }
 
