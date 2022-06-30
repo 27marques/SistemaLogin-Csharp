@@ -15,18 +15,18 @@ namespace Views
     {
         FieldForm fieldUsuario;
         FieldForm fieldSenha;
-		ButtonForm btnConfirmar;
+        ButtonForm btnConfirmar;
         ButtonForm btnCancelar;
         ButtonForm btnCadastrar;
 
-        public Login() : base("Login",SizeScreen.Small)
+        public Login() : base("Login", SizeScreen.Small)
         {
-           
-            fieldUsuario = new FieldForm("Usuário",80,20,180,20);
-            fieldSenha = new FieldForm("Senha",80,100,180,60);
+
+            fieldUsuario = new FieldForm("Usuário", 80, 20, 180, 20);
+            fieldSenha = new FieldForm("Senha", 80, 100, 180, 60);
             fieldSenha.txtField.PasswordChar = '*';
 
-			btnConfirmar = new ButtonForm("Confirmar", 50, 180, this.handleConfirm);
+            btnConfirmar = new ButtonForm("Confirmar", 50, 180, this.handleConfirm);
             btnCancelar = new ButtonForm("Sair", 180, 180, this.handleCancel);
             btnCadastrar = new ButtonForm("Novo", 120, 240, this.handleIncluir);
 
@@ -37,25 +37,28 @@ namespace Views
             this.Controls.Add(btnConfirmar);
             this.Controls.Add(btnCancelar);
             this.Controls.Add(btnCadastrar);
-            
+
         }
 
         private void handleConfirm(object sender, EventArgs e)
 
         {
-            try {
+            try
+            {
                 UsuarioController.Auth(
                     this.fieldUsuario.txtField.Text,
                     this.fieldSenha.txtField.Text
                 );
                 (new MenuPrincipal(this)).Show();
 
-            } catch (Exception err) {
+            }
+            catch (Exception err)
+            {
                 MessageBox.Show(err.Message);
             }
 
         }
-       
+
         private void handleCancel(object sender, EventArgs e)
         {
             if (MessageBox.Show(" Deseja mesmo sair? ", "Mensage do sistema ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -69,7 +72,7 @@ namespace Views
             this.Hide();
 
         }
-    
+
     }
 
 }

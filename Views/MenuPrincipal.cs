@@ -19,9 +19,9 @@ namespace Views
         ButtonForm btnSenhas;
         ButtonForm btnUsuario;
         ButtonForm btnCancelar;
-    
 
-        public MenuPrincipal(Form parent) : base("Menu Principal",SizeScreen.Small)
+
+        public MenuPrincipal(Form parent) : base("Menu Principal", SizeScreen.Small)
         {
             this.parent = parent;
             this.parent.Hide();
@@ -71,9 +71,9 @@ namespace Views
         {
             this.parent.Show();
             this.Close();
-            
+
         }
-        
+
     }
 }
 
